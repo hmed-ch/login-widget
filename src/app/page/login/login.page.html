@@ -1,0 +1,186 @@
+
+
+<ion-content>
+<span *ngIf="this.ShowConsent">
+
+<ion-row style="margin-top:20px;text-align:center;">
+  
+      <ion-col>
+      <ion-text>
+       <h3> Nos engagements et règles de confidentialité</h3>
+    </ion-text>
+      
+</ion-col>
+      
+    </ion-row>
+   
+			<ion-row style="text-align:center;margin: 20px 0;">
+			<ion-col>
+      <ion-item  style="margin-top:20px;"lines="none">
+
+            <!--ion-checkbox mode="ios" color="primary" style="margin: 0px 12px 0px 12px;" [(ngModel)]="isChecked2" slot="start"></ion-checkbox-->
+            <ion-text >
+        
+        <em style='display: inherit;margin-top: 3rem;margin-right: .7rem;color: #738aaa;font-size: .9rem;'>1- 
+
+Verifi.li est un service de vérification de situation financière. Il analyse vos comptes bancaires et certifie votre capacité de payer.
+    </em>
+      </ion-text>
+          </ion-item>
+			<ion-item  style="margin-top:20px;" lines="none">
+
+            <!--ion-checkbox mode="ios" color="primary" style="margin: 0px 12px 0px 12px;" [(ngModel)]="isChecked" slot="start"></ion-checkbox-->
+            <ion-text >
+        
+        <em style='display: inherit;margin-top: 3rem;margin-right: .7rem;color: #738aaa;font-size: .9rem;'>2- Vos mots de passe et vos informations financières ne sont jamais enregistrés chez nous. 
+		</em> 
+      </ion-text>
+          </ion-item>
+          <ion-item  style="margin-top:20px;" lines="none">
+
+            <!--ion-checkbox mode="ios" color="primary" style="margin: 0px 12px 0px 12px;" [(ngModel)]="isChecked" slot="start"></ion-checkbox-->
+            <ion-text >
+        
+        <em style='display: inherit;margin-top: 3rem;margin-right: .7rem;color: #738aaa;font-size: .9rem;'>3- Personne n'a un accès à vos informations financières.
+    </em> 
+      </ion-text>
+          </ion-item>
+ 			
+          </ion-col>
+      </ion-row>
+      <ion-row style="margin-right: 1%;">
+      
+      <ion-item   lines="none">
+
+            <ion-checkbox style="margin-right: -14%;" mode="ios" color="primary"  [(ngModel)]="isChecked" slot="start"></ion-checkbox>
+            
+          </ion-item>
+          <ion-col >
+      <ion-text >
+        
+        <em style='display: inherit;margin-top: 3rem;margin-right: .7rem;color: black;font-size: .9rem;'>En cochant cette case, je reconnais avoir pris connaissance des <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1Sjokqwk1QOHX5pkYUtMzTFfbXIR0JE9BR8EXjTWXSB8/edit?usp=sharing">Conditions Générales</a> ainsi que sa Politique de Confidentialité et je les accepte. 
+    </em> 
+      </ion-text>
+          </ion-col>
+      </ion-row>
+
+          <ion-row >
+    <ion-col>
+        
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="SubmitConsent()" style="border-radius: 30px;" type="submit" expand="block"><ion-icon name="arrow-dropright"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+     
+    </span>   
+
+    <span *ngIf="!this.ShowConsent">
+<ion-toolbar *ngIf="invalidcred"  mode="ios" color="danger">
+  <ion-title >Identifiant ou Mot de passe invalide</ion-title>
+</ion-toolbar>
+  <ion-row style="text-align:center;">
+  <ion-col>
+
+</ion-col>
+<ion-col>
+  <div class="login-logo">
+    <ion-img alt="Connexion" style="margin:auto;display:block;width: 60%;" src="assets/icon/{{banklogo}}"></ion-img>
+
+
+    <ion-text >
+        <h2 >
+          Connexion
+        </h2>
+      </ion-text>
+          <ion-text >
+          <h5 >
+            {{bankname}}</h5>
+          </ion-text>
+
+  </div>
+</ion-col>
+  <ion-col>
+  </ion-col>
+ </ion-row>
+   <!--iframe  #IFRAME sandbox="allow-same-origin allow-scripts allow-popups allow-forms" [src]="url"></iframe-->
+
+  <form #loginForm="ngForm" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked" >Identifiant </ion-label>
+        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
+          Identifiant is required
+        </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked" >Code secret</ion-label>
+        <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
+          Mot de passe is required
+        </p>
+      </ion-text>
+    </ion-list>
+
+    <ion-row>
+    <ion-col>
+        
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="onLogin(loginForm)" style="border-radius: 30px;" type="submit" expand="block"><ion-icon name="arrow-dropright"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </form>
+  <ion-row style="margin-bottom: 4%;">
+        <ion-col>
+        <ion-text >
+        
+        <em style='display: table-cell;margin-right: .8rem;color: #738aaa;font-size: .8rem;'><ion-icon name="information-circle-outline"></ion-icon> Renseignez les mêmes informations que celles que vous utilisez sur le site de votre banque.</em>
+      </ion-text>
+      </ion-col>
+      </ion-row>
+      
+   
+
+</span>
+<ion-row style="margin-top:30px">
+    <ion-col>
+        
+      </ion-col>
+      <ion-col>
+      <ion-text>
+    </ion-text>
+      <ion-img alt="Secure" style="max-width: 70px;margin: auto;width: 30%;" src="assets/icon/shield.svg"></ion-img>
+      
+</ion-col>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+<ion-row style="text-align:center;">
+  <ion-col>
+      <ion-text >
+        <em style='display: inherit;margin-top: 3rem;margin-right: .7rem;color: #738aaa;font-size: .9rem;'><ion-icon style="margin-right: 8px;" name="information-circle-outline"></ion-icon><strong>
+
+Verifi.li est securé et sûr.</strong>
+    </em>
+      </ion-text>
+  </ion-col>
+</ion-row> 
+</ion-content>

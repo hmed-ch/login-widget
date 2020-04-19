@@ -1,0 +1,32 @@
+<ion-content >
+
+
+          <ion-item lines="none" class="header">
+		    <ion-thumbnail mode="ios" slot="start">
+		      <ion-img [src]="'assets/icon/bank.png'" alt="museum">
+		      </ion-img>
+		    </ion-thumbnail>
+		    <ion-text mode="ios" >
+		      <h3>Choisissez votre banque :
+			</h3>
+		    </ion-text>
+		  </ion-item>
+
+          <ion-grid >
+          <ion-row *ngFor="let allbanks of popularbanks">
+       <ion-col *ngFor="let bank of allbanks">
+          <ion-card *ngIf='bank.bank_id' mode="ios"  routerLink="/login/{{bank.bank_id}}"  >
+            <img src="assets/icon/{{bank.bank_logo}}"  />
+        </ion-card>
+        <ion-card *ngIf='!bank.bank_id'>
+        </ion-card>
+       </ion-col>
+     </ion-row >
+
+        
+
+        
+      </ion-grid>
+            
+
+</ion-content>
